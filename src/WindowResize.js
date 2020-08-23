@@ -1,12 +1,13 @@
 import React, { useState, useEffect} from 'react';
 
 function WindowResize() {
-  const [windowHeight, setHeight] = useState(0);
-  const [windowWidth, setWidth] = useState(0);
+  const [windowSize, setWidnowSize] = useState({
+    height: 0,
+    width: 0,
+  });
 
   useEffect(() => {
-    setHeight(window.innerHeight);
-    setWidth(window.innerWidth);
+    handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
 
     return () => {
@@ -16,18 +17,21 @@ function WindowResize() {
 
   useEffect(() => {
     console.log('MOUNT / UPDATE');
-  }, [windowHeight]);
+  }, [windowSize]);
 
   const handleWindowResize = () => {
-    setHeight(window.innerHeight);
-    setWidth(window.innerWidth);
+    setWidnowSize({
+      height: window.innerHeight,
+      width: window.innerWidth
+    });
   };
 
+  const { height, width } = windowSize;
   return(
     <div>
-      {windowHeight} x {windowWidth}
+      {height} x {width}
     </div>
-  )
+  );
 }
 
 export default WindowResize;

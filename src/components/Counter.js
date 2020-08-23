@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocalStorage } from '../customHooks/useLocalStorage';
 
 function Counter() {
-  const [counterValue, setCounterValue] = useState(10);
-  const handleIncrementCounter = () => setCounterValue(counterValue + 1);
+  const [counterValue, setCounterValue] = useLocalStorage('counter', 20);
   const handleSafeIncrementCounter = () => setCounterValue(prevCounter => prevCounter + 1);
   const handleSafeDecrementCounter = () => setCounterValue(prevCounter => prevCounter - 1);
   const handleResetCounter = () => setCounterValue(0);

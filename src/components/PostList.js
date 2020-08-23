@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFetchData } from '../customHooks/useFetchData';
-
+import Comments from './Comments';
 const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 function PostsList() {
@@ -15,6 +15,7 @@ function PostsList() {
       {dataLoading ? <div>Ładowanie...</div> : null}
       {dataError ? <div>Błąd ładowania danych</div> : null}
       {renderPostsList()}
+      <Comments />
     </div>
   )
 }

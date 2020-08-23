@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { apiReducer, INITIAL_STATE } from '../reducers/apiReducer';
+import { apiReducer, INITIAL_STATE, API_TYPES } from '../reducers/apiReducer';
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
 
@@ -8,7 +8,7 @@ function Users() {
 
   useEffect(() => {
     usersDataDispatch({
-      type: 'DATA_LOADING',
+      type: API_TYPES.DATA_LOADING,
     });
 
     fetch(API_URL)
@@ -17,14 +17,14 @@ function Users() {
         setTimeout(
           () => {
             usersDataDispatch({
-              type: 'DATA_SUCCESS',
+              type: API_TYPES.DATA_SUCCESS,
               data: response,
             });
           },
           3000)
       )
       .catch((e) => usersDataDispatch({
-        type: 'DATA_ERROR',
+        type: API_TYPES.DATA_ERROR,
       }));
   }, []);
 

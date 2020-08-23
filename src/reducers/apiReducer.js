@@ -4,20 +4,26 @@ export const INITIAL_STATE = {
   dataError: false,
 };
 
+export const API_TYPES = {
+  DATA_SUCCESS: 'DATA_SUCCESS',
+  DATA_LOADING: 'DATA_LOADING',
+  DATA_ERROR: 'DATA_ERROR',
+};
+
 export function apiReducer(state, action) {
   switch (action.type) {
-    case 'DATA_SUCCESS':
+    case API_TYPES.DATA_SUCCESS:
       return {
         ...state,
         dataLoading: false,
         data: [...action.data],
       };
-    case 'DATA_LOADING':
+    case API_TYPES.DATA_LOADING:
       return {
         ...state,
         dataLoading: true
       };
-    case 'DATA_ERROR':
+    case API_TYPES.DATA_ERROR:
       return {
         ...state,
         dataLoading: false,

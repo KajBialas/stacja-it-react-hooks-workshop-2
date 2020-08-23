@@ -1,24 +1,24 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../App';
-
+import { useForm } from 'react-hook-form';
 function Login() {
-  const [email, setEmail] = useState ('');
+  const { register, handleSubmit, watch, errors } = useForm();
   const userService = useContext(UserContext);
 
-  const handleChange = e => setEmail(e.target.value);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    userService.login(email);
+  const onHandleSubmit = (data) => {
+    console.log(data);
+    userService.login(data.email);
   };
+
   return (
     <div>
       {userService.userName ? <div>Użytkownik zalogowany jako: {userService.userName}</div> :
-        <form onSubmit={handleSubmit}>
-          <input onChange={handleChange} value={email} type="text"/>
+        <form onSubmit={handleSubmit(onHandleSubmit)}>
+          <input name="email" ref={register({required: 'Uzupenij adres email'})} type="text"/>
           <button type="submit">LOGUJ</button>
-        </form>
-      }
+        </form>}
+      {errors.email && <div>{errors.email.message}</div>}
+
     </div>
   )
 }

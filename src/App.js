@@ -1,7 +1,8 @@
 import React from 'react';
-import Counter from './Counter';
-import WindowResize from './WindowResize';
-import Users from './Users';
+import Counter from './components/Counter';
+import WindowResize from './components/WindowResize';
+import Users from './components/Users';
+import PostsList from './components/PostList';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Counter />
       <WindowResize />
       <Users />
+      <PostsList/>
       Statyczna treść
     </div>
   );
